@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "axios": "^0.26.0",
-        "vue-color": "^2.7.0"
+        "vue-color": "^2.7.0",
+        "vue-router": "3"
     }
 }
