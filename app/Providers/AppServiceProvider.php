@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Helper;
 use App\Models\Space;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Auth;
 
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
                 'versionNumber' => $versionNumber
             ]);
         });
+
+        JsonResource::withoutWrapping();
     }
 
     public function register()

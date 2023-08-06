@@ -1,5 +1,18 @@
 <script setup>
-//
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+
+const currencies = ref([]);
+
+const fetchCurrencies = () => {
+    axios
+        .get('http://localhost:8000/api/currencies')
+        .then(response => currencies.value = response.data);
+};
+
+onMounted(() => {
+    fetchCurrencies();
+});
 </script>
 
 <template>
@@ -23,7 +36,11 @@
             </div>
             <div>
                 <label class="block mb-1 text-sm text-gray-700">Currency</label>
-                <input class="w-full px-3 py-2 text-sm border rounded-md" type="text" />
+                <select class="w-full px-3 py-2 text-sm border rounded-md appearance-none">
+                    <option v-for="currency in currencies">
+                        <span v-html="currency.name + ' (' + currency.symbol + ')'"></span>
+                    </option>
+                </select>
             </div>
             <button class="w-full py-2.5 hover:bg-blue-600 transition text-sm bg-blue-500 text-white rounded-md">Register</button>
         </div>
