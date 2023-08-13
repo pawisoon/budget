@@ -1,5 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CurrencyController;
+use App\Http\Controllers\Api\LogInController;
 
-Route::get('/currencies', \App\Http\Controllers\Api\CurrencyController::class);
+Route::post('/log-in', LogInController::class);
+
+Route::get('/currencies', CurrencyController::class);
