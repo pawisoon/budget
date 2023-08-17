@@ -6,16 +6,25 @@ volumes:
 services:
   database:
     image: mysql:5.7
+    platform: linux/x86_64
     environment:
       MYSQL_DATABASE: 'budget'
       MYSQL_USER: 'budget'
       MYSQL_PASSWORD: 'test'
       MYSQL_RANDOM_ROOT_PASSWORD: 1
     ports:
-      - 3306:3306
+      - 33060:3306
     command: --default-authentication-plugin=mysql_native_password
 
   app:
-    build: ./
+    build:
+      args:
+        BUDGET_VERSION: "0.15.0"
+    environment:
+      DB_DATABASE: 'budget'
+      DB_USERNAME: 'budget'
+      DB_PASSWORD: ''
+      DB_HOST: 'database'
+      DB_PORT: 33060
     ports:
       - 8080:80
